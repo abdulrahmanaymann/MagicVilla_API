@@ -1,7 +1,4 @@
-﻿using MagicVilla_VillaAPI.Models;
-using Microsoft.EntityFrameworkCore;
-
-namespace MagicVilla_VillaAPI.Data
+﻿namespace MagicVilla_VillaAPI.Data
 {
     public class ApplicationDbContext : DbContext
     {
@@ -11,11 +8,14 @@ namespace MagicVilla_VillaAPI.Data
 
         public DbSet<Villa> Villas { get; set; }
 
+        public DbSet<VillaNumber> VillaNumbers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Villa>().HasData(
+            modelBuilder.Entity<Villa>().HasData
+            (
                 new Villa
                 {
                     Id = 1,
@@ -82,7 +82,54 @@ namespace MagicVilla_VillaAPI.Data
                     UpdatedDate = DateTime.Now
                 }
             );
-        }
 
+            //modelBuilder.Entity<VillaNumber>().HasData
+            //(
+            //    new VillaNumber
+            //    {
+            //        VillaNo = 101,
+            //        SpecialDetails = "Ocean View",
+            //        CreatedDate = DateTime.Now,
+            //        UpdatedDate = DateTime.Now,
+            //        VillaId = 1
+            //    },
+
+            //    new VillaNumber
+            //    {
+            //        VillaNo = 102,
+            //        SpecialDetails = "Mountain View",
+            //        CreatedDate = DateTime.Now,
+            //        UpdatedDate = DateTime.Now,
+            //        VillaId = 2
+            //    },
+
+            //    new VillaNumber
+            //    {
+            //        VillaNo = 103,
+            //        SpecialDetails = "Beachfront",
+            //        CreatedDate = DateTime.Now,
+            //        UpdatedDate = DateTime.Now,
+            //        VillaId = 3
+            //    },
+
+            //    new VillaNumber
+            //    {
+            //        VillaNo = 104,
+            //        SpecialDetails = "City View",
+            //        CreatedDate = DateTime.Now,
+            //        UpdatedDate = DateTime.Now,
+            //        VillaId = 4
+            //    },
+
+            //    new VillaNumber
+            //    {
+            //        VillaNo = 105,
+            //        SpecialDetails = "Garden View",
+            //        CreatedDate = DateTime.Now,
+            //        UpdatedDate = DateTime.Now,
+            //        VillaId = 5
+            //    }
+            //);
+        }
     }
 }

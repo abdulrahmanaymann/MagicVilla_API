@@ -1,6 +1,3 @@
-using MagicVilla_VillaAPI.Data;
-using Microsoft.EntityFrameworkCore;
-
 namespace MagicVilla_VillaAPI
 {
     public class Program
@@ -19,6 +16,9 @@ namespace MagicVilla_VillaAPI
             });
 
             builder.Services.AddAutoMapper(typeof(MappingConfig));
+
+            builder.Services.AddScoped<IVillaRepository, VillaRepository>();
+            builder.Services.AddScoped<IVillaNumberRepository, VillaNumberRepository>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

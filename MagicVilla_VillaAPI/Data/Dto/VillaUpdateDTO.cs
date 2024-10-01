@@ -1,8 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace MagicVilla_VillaAPI.Dto
+﻿namespace MagicVilla_VillaAPI.Data.Dto
 {
-    public class VillaDTO
+    public class VillaUpdateDTO
     {
         public int Id { get; set; }
 
@@ -15,10 +13,13 @@ namespace MagicVilla_VillaAPI.Dto
         [Required]
         public double Rate { get; set; }
 
+        [Required]
         public int Occupancy { get; set; }
 
+        [Required]
         public int Sqft { get; set; }
 
+        [Required]
         public string ImageUrl { get; set; } = string.Empty;
 
         public string Amenity { get; set; } = string.Empty;
