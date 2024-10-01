@@ -1,4 +1,4 @@
-﻿namespace MagicVilla_VillaAPI.Data
+﻿namespace MagicVilla_Web.Models
 {
     public class APIResponse
     {

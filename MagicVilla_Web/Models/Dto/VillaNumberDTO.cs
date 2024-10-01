@@ -1,6 +1,6 @@
-﻿namespace MagicVilla_VillaAPI.Data.Dto
+﻿namespace MagicVilla_Web.Models.Dto
 {
-    public class VillaNumberUpdateDTO
+    public class VillaNumberDTO
     {
         public int VillaNo { get; set; }
 
