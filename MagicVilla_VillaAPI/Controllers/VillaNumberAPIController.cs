@@ -7,7 +7,7 @@
         protected APIResponse _response;
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
-        private readonly IVillaNumberRepository _villdaNumberRepository;
+        private readonly IVillaNumberRepository _villaNumberRepository;
         public readonly IVillaRepository _villaRepository;
 
         public VillaNumberAPIController(ApplicationDbContext context, IMapper mapper, IVillaNumberRepository villaNumberRepository, IVillaRepository villaRepository)
@@ -15,7 +15,7 @@
             _context = context;
             _mapper = mapper;
             _response = new APIResponse();
-            _villdaNumberRepository = villaNumberRepository;
+            _villaNumberRepository = villaNumberRepository;
             _villaRepository = villaRepository;
         }
 
@@ -25,7 +25,7 @@
         {
             try
             {
-                IEnumerable<VillaNumber> villaNumbers = await _villdaNumberRepository.GetAllAsync();
+                IEnumerable<VillaNumber> villaNumbers = await _villaNumberRepository.GetAllAsync();
                 _response.Result = _mapper.Map<List<VillaNumberDTO>>(villaNumbers);
                 return Ok(_response);
             }
@@ -54,7 +54,7 @@
                     return BadRequest(_response);
                 }
 
-                var villNumber = await _villdaNumberRepository.GetAsync(u => u.VillaNo == villaNo);
+                var villNumber = await _villaNumberRepository.GetAsync(u => u.VillaNo == villaNo);
                 if (villNumber == null)
                 {
                     _response.StatusCode = HttpStatusCode.NotFound;
@@ -84,7 +84,7 @@
         {
             try
             {
-                if (await _villdaNumberRepository.GetAsync(u => u.VillaNo == createDTO.VillaNo) != null)
+                if (await _villaNumberRepository.GetAsync(u => u.VillaNo == createDTO.VillaNo) != null)
                 {
                     _response.IsSuccess = false;
                     _response.StatusCode = HttpStatusCode.BadRequest;
@@ -109,7 +109,7 @@
                 }
 
                 VillaNumber villaNumber = _mapper.Map<VillaNumber>(createDTO);
-                await _villdaNumberRepository.CreateAsync(villaNumber);
+                await _villaNumberRepository.CreateAsync(villaNumber);
 
                 _response.Result = _mapper.Map<VillaNumberDTO>(villaNumber);
                 _response.StatusCode = HttpStatusCode.Created;
@@ -141,14 +141,14 @@
                     return BadRequest(_response);
                 }
 
-                var villaNumber = await _villdaNumberRepository.GetAsync(u => u.VillaNo == villaNo);
+                var villaNumber = await _villaNumberRepository.GetAsync(u => u.VillaNo == villaNo);
                 if (villaNumber == null)
                 {
                     _response.StatusCode = HttpStatusCode.NotFound;
                     return NotFound(_response);
                 }
 
-                await _villdaNumberRepository.RemoveAsync(villaNumber);
+                await _villaNumberRepository.RemoveAsync(villaNumber);
 
                 _response.StatusCode = HttpStatusCode.NoContent;
                 _response.IsSuccess = true;
@@ -189,7 +189,7 @@
 
                 VillaNumber villaNumber = _mapper.Map<VillaNumber>(updateDTO);
 
-                await _villdaNumberRepository.UpdateAsync(villaNumber);
+                await _villaNumberRepository.UpdateAsync(villaNumber);
 
                 _response.StatusCode = HttpStatusCode.NoContent;
                 _response.IsSuccess = true;
