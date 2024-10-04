@@ -25,7 +25,8 @@
         {
             try
             {
-                IEnumerable<VillaNumber> villaNumbers = await _villaNumberRepository.GetAllAsync();
+                IEnumerable<VillaNumber> villaNumbers = await _villaNumberRepository
+                    .GetAllAsync(includeProperties: "Villa");
                 _response.Result = _mapper.Map<List<VillaNumberDTO>>(villaNumbers);
                 return Ok(_response);
             }

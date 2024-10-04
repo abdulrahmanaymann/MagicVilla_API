@@ -71,70 +71,70 @@ namespace MagicVilla_VillaAPI.Migrations
                             Id = 1,
                             Amenity = "Pool, Wi-Fi, Air Conditioning",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(2024, 10, 4, 16, 8, 36, 196, DateTimeKind.Local).AddTicks(9924),
+                            CreatedDate = new DateTime(2024, 10, 4, 18, 18, 1, 708, DateTimeKind.Local).AddTicks(9812),
                             Details = "A luxury villa with all amenities and a beautiful ocean view.",
                             ImageUrl = "https://www.pexels.com/photo/white-concrete-house-near-body-of-water-210617/",
                             Name = "Luxury Villa",
                             Occupancy = 4,
                             Rate = 500.0,
                             Sqft = 2000,
-                            UpdatedDate = new DateTime(2024, 10, 4, 16, 8, 36, 196, DateTimeKind.Local).AddTicks(9996)
+                            UpdatedDate = new DateTime(2024, 10, 4, 18, 18, 1, 708, DateTimeKind.Local).AddTicks(9864)
                         },
                         new
                         {
                             Id = 2,
                             Amenity = "Fireplace, Wi-Fi, Hot Tub",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(2024, 10, 4, 16, 8, 36, 197, DateTimeKind.Local).AddTicks(8),
+                            CreatedDate = new DateTime(2024, 10, 4, 18, 18, 1, 708, DateTimeKind.Local).AddTicks(9870),
                             Details = "A cozy villa located in the mountains, perfect for nature lovers.",
                             ImageUrl = "https://www.pexels.com/photo/a-house-near-mountain-during-daytime-12905885/",
                             Name = "Mountain Villa",
                             Occupancy = 6,
                             Rate = 350.0,
                             Sqft = 1500,
-                            UpdatedDate = new DateTime(2024, 10, 4, 16, 8, 36, 197, DateTimeKind.Local).AddTicks(11)
+                            UpdatedDate = new DateTime(2024, 10, 4, 18, 18, 1, 708, DateTimeKind.Local).AddTicks(9873)
                         },
                         new
                         {
                             Id = 3,
                             Amenity = "Pool, Wi-Fi, Ocean View",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(2024, 10, 4, 16, 8, 36, 197, DateTimeKind.Local).AddTicks(17),
+                            CreatedDate = new DateTime(2024, 10, 4, 18, 18, 1, 708, DateTimeKind.Local).AddTicks(9877),
                             Details = "A beachfront villa with direct access to the beach and stunning views.",
                             ImageUrl = "https://www.pexels.com/photo/aerial-view-of-beach-resort-2265876/",
                             Name = "Beachfront Villa",
                             Occupancy = 5,
                             Rate = 600.0,
                             Sqft = 2500,
-                            UpdatedDate = new DateTime(2024, 10, 4, 16, 8, 36, 197, DateTimeKind.Local).AddTicks(21)
+                            UpdatedDate = new DateTime(2024, 10, 4, 18, 18, 1, 708, DateTimeKind.Local).AddTicks(9879)
                         },
                         new
                         {
                             Id = 4,
                             Amenity = "Gym, Wi-Fi, Rooftop Pool",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(2024, 10, 4, 16, 8, 36, 197, DateTimeKind.Local).AddTicks(27),
+                            CreatedDate = new DateTime(2024, 10, 4, 18, 18, 1, 708, DateTimeKind.Local).AddTicks(9883),
                             Details = "An urban villa located in the heart of the city with luxurious amenities.",
                             ImageUrl = "https://www.pexels.com/photo/modern-urban-house-with-pool-3639902/",
                             Name = "Urban Villa",
                             Occupancy = 3,
                             Rate = 450.0,
                             Sqft = 1800,
-                            UpdatedDate = new DateTime(2024, 10, 4, 16, 8, 36, 197, DateTimeKind.Local).AddTicks(30)
+                            UpdatedDate = new DateTime(2024, 10, 4, 18, 18, 1, 708, DateTimeKind.Local).AddTicks(9885)
                         },
                         new
                         {
                             Id = 5,
                             Amenity = "Garden, Fireplace, Wi-Fi",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedDate = new DateTime(2024, 10, 4, 16, 8, 36, 197, DateTimeKind.Local).AddTicks(35),
+                            CreatedDate = new DateTime(2024, 10, 4, 18, 18, 1, 708, DateTimeKind.Local).AddTicks(9889),
                             Details = "A peaceful villa surrounded by nature, perfect for a quiet retreat.",
                             ImageUrl = "https://www.pexels.com/photo/house-near-a-forest-1817857/",
                             Name = "Countryside Villa",
                             Occupancy = 4,
                             Rate = 300.0,
                             Sqft = 1600,
-                            UpdatedDate = new DateTime(2024, 10, 4, 16, 8, 36, 197, DateTimeKind.Local).AddTicks(39)
+                            UpdatedDate = new DateTime(2024, 10, 4, 18, 18, 1, 708, DateTimeKind.Local).AddTicks(9891)
                         });
                 });
 

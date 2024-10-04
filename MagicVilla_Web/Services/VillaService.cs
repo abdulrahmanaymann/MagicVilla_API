@@ -32,17 +32,17 @@
             Url = $"{_villaUrl}/api/villaAPI"
         });
 
-        public Task<T> DeleteAsync<T>(int id) => SendAsync<T>(new APIRequest()
-        {
-            ApiType = ApiType.DELETE,
-            Url = $"{_villaUrl}/api/villaAPI/{id}"
-        });
-
         public Task<T> UpdateAsync<T>(VillaUpdateDTO dto) => SendAsync<T>(new APIRequest()
         {
             ApiType = ApiType.PUT,
             Data = dto,
             Url = $"{_villaUrl}/api/villaAPI/{dto.Id}"
+        });
+
+        public Task<T> DeleteAsync<T>(int id) => SendAsync<T>(new APIRequest()
+        {
+            ApiType = ApiType.DELETE,
+            Url = $"{_villaUrl}/api/villaAPI/{id}"
         });
     }
 }
