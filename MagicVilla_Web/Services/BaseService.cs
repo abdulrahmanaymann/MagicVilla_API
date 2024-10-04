@@ -16,11 +16,11 @@
         {
             try
             {
-                var client = _httpClient.CreateClient("MagicVillaAPI");
-                HttpRequestMessage message = new();
+                var client = _httpClient.CreateClient("MagicAPI");
+                HttpRequestMessage message = new HttpRequestMessage();
                 message.Headers.Add("Accept", "application/json");
                 message.RequestUri = new Uri(apiRequest.Url);
-                if (apiRequest != null)
+                if (apiRequest.Data != null)
                 {
                     message.Content = new StringContent(JsonConvert.SerializeObject(apiRequest.Data),
                         Encoding.UTF8, "application/json");
@@ -28,34 +28,28 @@
 
                 message.Method = apiRequest.ApiType switch
                 {
-                    ApiType.GET => HttpMethod.Get,
-                    ApiType.POST => HttpMethod.Post,
-                    ApiType.PUT => HttpMethod.Put,
-                    ApiType.DELETE => HttpMethod.Delete,
+                    SD.ApiType.POST => HttpMethod.Post,
+                    SD.ApiType.PUT => HttpMethod.Put,
+                    SD.ApiType.DELETE => HttpMethod.Delete,
                     _ => HttpMethod.Get,
                 };
 
                 HttpResponseMessage? apiResponse = null;
-
                 apiResponse = await client.SendAsync(message);
-
                 var apiContent = await apiResponse.Content.ReadAsStringAsync();
-                var apiResponseObj = JsonConvert.DeserializeObject<T>(apiContent);
-                return apiResponseObj;
+                var APIResponse = JsonConvert.DeserializeObject<T>(apiContent);
+                return APIResponse;
             }
-
-            catch (Exception ex)
+            catch (Exception e)
             {
                 var dto = new APIResponse
                 {
-                    StatusCode = HttpStatusCode.InternalServerError,
-                    IsSuccess = false,
-                    ErrorMessages = [ex.Message],
+                    ErrorMessages = new List<string> { Convert.ToString(e.Message) },
+                    IsSuccess = false
                 };
-
                 var res = JsonConvert.SerializeObject(dto);
-                var apiResponseObj = JsonConvert.DeserializeObject<T>(res);
-                return apiResponseObj;
+                var APIResponse = JsonConvert.DeserializeObject<T>(res);
+                return APIResponse;
             }
         }
     }

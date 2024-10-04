@@ -13,51 +13,36 @@
 
         }
 
-        public Task<T> GetAllAsync<T>()
+        public Task<T> GetAllAsync<T>() => SendAsync<T>(new APIRequest()
         {
-            return SendAsync<T>(new APIRequest()
-            {
-                ApiType = ApiType.GET,
-                Url = $"{_villaUrl}/api/villaAPI"
-            });
-        }
+            ApiType = ApiType.GET,
+            Url = $"{_villaUrl}/api/villaAPI"
+        });
 
-        public Task<T> GetAsync<T>(int id)
+        public Task<T> GetAsync<T>(int id) => SendAsync<T>(new APIRequest()
         {
-            return SendAsync<T>(new APIRequest()
-            {
-                ApiType = ApiType.GET,
-                Url = $"{_villaUrl}/api/villaAPI/{id}"
-            });
-        }
+            ApiType = ApiType.GET,
+            Url = $"{_villaUrl}/api/villaAPI/{id}"
+        });
 
-        public Task<T> CreateAsync<T>(VillaCreateDTO dto)
+        public Task<T> CreateAsync<T>(VillaCreateDTO dto) => SendAsync<T>(new APIRequest()
         {
-            return SendAsync<T>(new APIRequest()
-            {
-                ApiType = ApiType.POST,
-                Data = dto,
-                Url = $"{_villaUrl}/api/villaAPI"
-            });
-        }
+            ApiType = ApiType.POST,
+            Data = dto,
+            Url = $"{_villaUrl}/api/villaAPI"
+        });
 
-        public Task<T> DeleteAsync<T>(int id)
+        public Task<T> DeleteAsync<T>(int id) => SendAsync<T>(new APIRequest()
         {
-            return SendAsync<T>(new APIRequest()
-            {
-                ApiType = ApiType.DELETE,
-                Url = $"{_villaUrl}/api/villaAPI/{id}"
-            });
-        }
+            ApiType = ApiType.DELETE,
+            Url = $"{_villaUrl}/api/villaAPI/{id}"
+        });
 
-        public Task<T> UpdateAsync<T>(VillaUpdateDTO dto)
+        public Task<T> UpdateAsync<T>(VillaUpdateDTO dto) => SendAsync<T>(new APIRequest()
         {
-            return SendAsync<T>(new APIRequest()
-            {
-                ApiType = ApiType.PUT,
-                Data = dto,
-                Url = $"{_villaUrl}/api/villaAPI/{dto.Id}"
-            });
-        }
+            ApiType = ApiType.PUT,
+            Data = dto,
+            Url = $"{_villaUrl}/api/villaAPI/{dto.Id}"
+        });
     }
 }

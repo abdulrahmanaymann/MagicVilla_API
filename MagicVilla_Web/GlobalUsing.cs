@@ -2,6 +2,7 @@
 global using System.Net;
 global using System.Text;
 global using AutoMapper;
+global using MagicVilla_Utility;
 global using MagicVilla_Web.Models;
 global using MagicVilla_Web.Models.Dto;
 global using MagicVilla_Web.Services;
