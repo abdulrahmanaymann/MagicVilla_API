@@ -39,9 +39,12 @@
                 var response = await _villaService.CreateAsync<APIResponse>(createDTO);
                 if (response != null && response.IsSuccess)
                 {
+                    TempData["success"] = "Villa created successfully";
                     return RedirectToAction(nameof(Index));
                 }
             }
+
+            TempData["error"] = "Villa create failed";
 
             return View(createDTO);
         }
@@ -69,9 +72,12 @@
                 var response = await _villaService.UpdateAsync<APIResponse>(updateDTO);
                 if (response != null && response.IsSuccess)
                 {
+                    TempData["success"] = "Villa updated successfully";
                     return RedirectToAction(nameof(Index));
                 }
             }
+
+            TempData["error"] = "Villa update failed";
 
             return View(updateDTO);
         }
@@ -98,8 +104,11 @@
             var response = await _villaService.DeleteAsync<APIResponse>(dto.Id);
             if (response != null && response.IsSuccess)
             {
+                TempData["success"] = "Villa deleted successfully";
                 return RedirectToAction(nameof(Index));
             }
+
+            TempData["error"] = "Villa delete failed";
 
             return View(dto);
         }

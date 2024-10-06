@@ -55,6 +55,7 @@
                 var response = await _villaNumberService.CreateAsync<APIResponse>(model.VillaNumber);
                 if (response != null && response.IsSuccess)
                 {
+                    TempData["success"] = "Villa number created successfully";
                     return RedirectToAction(nameof(Index));
                 }
 
@@ -78,6 +79,8 @@
                         Value = i.Id.ToString()
                     });
             }
+
+            TempData["error"] = "Villa number create failed";
 
             return View(model);
         }
@@ -119,6 +122,7 @@
                 var response = await _villaNumberService.UpdateAsync<APIResponse>(model.VillaNumber);
                 if (response != null && response.IsSuccess)
                 {
+                    TempData["success"] = "Villa number updated successfully";
                     return RedirectToAction(nameof(Index));
                 }
 
@@ -142,6 +146,8 @@
                         Value = i.Id.ToString()
                     });
             }
+
+            TempData["error"] = "Villa number update failed";
 
             return View(model);
         }
@@ -183,8 +189,11 @@
             var response = await _villaNumberService.DeleteAsync<APIResponse>(model.VillaNumber.VillaNo);
             if (response != null && response.IsSuccess)
             {
+                TempData["success"] = "Villa number deleted successfully";
                 return RedirectToAction(nameof(Index));
             }
+
+            TempData["error"] = "Villa number delete failed";
 
             return View(model);
         }
