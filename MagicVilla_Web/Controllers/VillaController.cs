@@ -51,7 +51,8 @@
             var response = await _villaService.GetAsync<APIResponse>(id);
             if (response != null && response.IsSuccess)
             {
-                VillaDTO dto = JsonConvert.DeserializeObject<VillaDTO>(Convert.ToString(response.Result));
+                VillaDTO dto = JsonConvert.DeserializeObject<VillaDTO>
+                    (Convert.ToString(response.Result));
 
                 return View(_mapper.Map<VillaUpdateDTO>(dto));
             }
@@ -80,7 +81,8 @@
             var response = await _villaService.GetAsync<APIResponse>(id);
             if (response != null && response.IsSuccess)
             {
-                VillaDTO dto = JsonConvert.DeserializeObject<VillaDTO>(Convert.ToString(response.Result));
+                VillaDTO dto = JsonConvert.DeserializeObject<VillaDTO>
+                    (Convert.ToString(response.Result));
 
                 return View(dto);
             }

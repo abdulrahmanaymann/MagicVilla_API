@@ -87,18 +87,14 @@
             {
                 if (await _villaNumberRepository.GetAsync(u => u.VillaNo == createDTO.VillaNo) != null)
                 {
-                    _response.IsSuccess = false;
-                    _response.StatusCode = HttpStatusCode.BadRequest;
-                    _response.ErrorMessages = ["Villa Number already exists"];
-                    return BadRequest(_response);
+                    ModelState.AddModelError("ErrorMessages", "Villa Number already exists!");
+                    return BadRequest(ModelState);
                 }
 
                 if (await _villaRepository.GetAsync(u => u.Id == createDTO.VillaId) == null)
                 {
-                    _response.IsSuccess = false;
-                    _response.StatusCode = HttpStatusCode.BadRequest;
-                    _response.ErrorMessages = ["Villa does not exist"];
-                    return BadRequest(_response);
+                    ModelState.AddModelError("ErrorMessages", "Villa Id is invalid!");
+                    return BadRequest(ModelState);
                 }
 
                 if (createDTO == null)
@@ -182,10 +178,8 @@
 
                 if (await _villaRepository.GetAsync(u => u.Id == updateDTO.VillaId) == null)
                 {
-                    _response.IsSuccess = false;
-                    _response.StatusCode = HttpStatusCode.BadRequest;
-                    _response.ErrorMessages = ["Villa does not exist"];
-                    return BadRequest(_response);
+                    ModelState.AddModelError("ErrorMessages", "Villa Id is invalid!");
+                    return BadRequest(ModelState);
                 }
 
                 VillaNumber villaNumber = _mapper.Map<VillaNumber>(updateDTO);
