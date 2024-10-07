@@ -9,7 +9,7 @@
         public Repository(ApplicationDbContext context)
         {
             _context = context;
-            this._dbSet = _context.Set<T>();
+            _dbSet = _context.Set<T>();
         }
 
         public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)

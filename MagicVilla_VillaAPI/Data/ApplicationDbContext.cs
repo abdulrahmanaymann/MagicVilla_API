@@ -10,6 +10,8 @@
 
         public DbSet<VillaNumber> VillaNumbers { get; set; }
 
+        public DbSet<LocalUser> localUsers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

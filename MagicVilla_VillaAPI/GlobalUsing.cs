@@ -2,6 +2,7 @@
 global using System.ComponentModel.DataAnnotations.Schema;
 global using System.Linq.Expressions;
 global using System.Net;
+global using System.Text;
 global using AutoMapper;
 global using MagicVilla_VillaAPI.Data;
 global using MagicVilla_VillaAPI.Models;
