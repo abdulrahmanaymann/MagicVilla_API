@@ -1,4 +1,6 @@
-﻿namespace MagicVilla_VillaAPI.Controllers
+﻿using Microsoft.AspNetCore.Authorization;
+
+namespace MagicVilla_VillaAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -78,6 +80,7 @@
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -125,6 +128,7 @@
         }
 
         [HttpDelete("{villaNo:int}", Name = "DeleteVillaNumber")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -163,6 +167,7 @@
         }
 
         [HttpPut("{villaNo:int}", Name = "UpdateVillaNumber")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

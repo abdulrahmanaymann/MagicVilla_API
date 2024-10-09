@@ -14,36 +14,41 @@ namespace MagicVilla_Web.Services
 
         }
 
-        public Task<T> GetAllAsync<T>() => SendAsync<T>(new APIRequest()
+        public Task<T> GetAllAsync<T>(string token) => SendAsync<T>(new APIRequest()
         {
             ApiType = ApiType.GET,
-            Url = $"{_villaUrl}/api/villaNumberAPI"
+            Url = $"{_villaUrl}/api/villaNumberAPI",
+            Token = token
         });
 
-        public Task<T> GetAsync<T>(int VillaNo) => SendAsync<T>(new APIRequest()
+        public Task<T> GetAsync<T>(int VillaNo, string token) => SendAsync<T>(new APIRequest()
         {
             ApiType = ApiType.GET,
-            Url = $"{_villaUrl}/api/villaNumberAPI/{VillaNo}"
+            Url = $"{_villaUrl}/api/villaNumberAPI/{VillaNo}",
+            Token = token
         });
 
-        public Task<T> CreateAsync<T>(VillaNumberCreateDTO dto) => SendAsync<T>(new APIRequest()
+        public Task<T> CreateAsync<T>(VillaNumberCreateDTO dto, string token) => SendAsync<T>(new APIRequest()
         {
             ApiType = ApiType.POST,
             Data = dto,
-            Url = $"{_villaUrl}/api/villaNumberAPI"
+            Url = $"{_villaUrl}/api/villaNumberAPI",
+            Token = token
         });
 
-        public Task<T> UpdateAsync<T>(VillaNumberUpdateDTO dto) => SendAsync<T>(new APIRequest()
+        public Task<T> UpdateAsync<T>(VillaNumberUpdateDTO dto, string token) => SendAsync<T>(new APIRequest()
         {
             ApiType = ApiType.PUT,
             Data = dto,
-            Url = $"{_villaUrl}/api/villaNumberAPI/{dto.VillaNo}"
+            Url = $"{_villaUrl}/api/villaNumberAPI/{dto.VillaNo}",
+            Token = token
         });
 
-        public Task<T> DeleteAsync<T>(int VillaNo) => SendAsync<T>(new APIRequest()
+        public Task<T> DeleteAsync<T>(int VillaNo, string token) => SendAsync<T>(new APIRequest()
         {
             ApiType = ApiType.DELETE,
-            Url = $"{_villaUrl}/api/villaNumberAPI/{VillaNo}"
+            Url = $"{_villaUrl}/api/villaNumberAPI/{VillaNo}",
+            Token = token
         });
     }
 }
