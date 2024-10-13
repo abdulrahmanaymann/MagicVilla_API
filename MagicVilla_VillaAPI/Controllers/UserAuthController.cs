@@ -1,18 +1,15 @@
-﻿namespace MagicVilla_VillaAPI.Controllers
+﻿using Asp.Versioning;
+
+namespace MagicVilla_VillaAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
-    public class UserAuthController : ControllerBase
+    [ApiVersionNeutral]
+    public class UserAuthController(IUserRepository userRepository) : ControllerBase
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository = userRepository;
 
-        protected APIResponse _response;
-
-        public UserAuthController(IUserRepository userRepository)
-        {
-            _userRepository = userRepository;
-            _response = new APIResponse();
-        }
+        protected APIResponse _response = new();
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDTO dto)

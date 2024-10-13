@@ -1,30 +1,23 @@
 ﻿
 namespace MagicVilla_Web.Services
 {
-    public class VillaNumberService : BaseService, IVillaNumberService
+    public class VillaNumberService(IHttpClientFactory httpClient, IConfiguration configuration) : BaseService(httpClient), IVillaNumberService
     {
-        private readonly IHttpClientFactory _httpClient;
+        private readonly IHttpClientFactory _httpClient = httpClient;
 
-        private readonly string _villaUrl;
-
-        public VillaNumberService(IHttpClientFactory httpClient, IConfiguration configuration) : base(httpClient)
-        {
-            _httpClient = httpClient;
-            _villaUrl = configuration.GetValue<string>("ServiceUrls:villaAPI")!;
-
-        }
+        private readonly string _villaUrl = configuration.GetValue<string>("ServiceUrls:villaAPI")!;
 
         public Task<T> GetAllAsync<T>(string token) => SendAsync<T>(new APIRequest()
         {
             ApiType = ApiType.GET,
-            Url = $"{_villaUrl}/api/villaNumberAPI",
+            Url = $"{_villaUrl}/api/v1/villaNumberAPI",
             Token = token
         });
 
         public Task<T> GetAsync<T>(int VillaNo, string token) => SendAsync<T>(new APIRequest()
         {
             ApiType = ApiType.GET,
-            Url = $"{_villaUrl}/api/villaNumberAPI/{VillaNo}",
+            Url = $"{_villaUrl}/api/v1/villaNumberAPI/{VillaNo}",
             Token = token
         });
 
@@ -32,7 +25,7 @@ namespace MagicVilla_Web.Services
         {
             ApiType = ApiType.POST,
             Data = dto,
-            Url = $"{_villaUrl}/api/villaNumberAPI",
+            Url = $"{_villaUrl}/api/v1/villaNumberAPI",
             Token = token
         });
 
@@ -40,14 +33,14 @@ namespace MagicVilla_Web.Services
         {
             ApiType = ApiType.PUT,
             Data = dto,
-            Url = $"{_villaUrl}/api/villaNumberAPI/{dto.VillaNo}",
+            Url = $"{_villaUrl}/api/v1/villaNumberAPI/{dto.VillaNo}",
             Token = token
         });
 
         public Task<T> DeleteAsync<T>(int VillaNo, string token) => SendAsync<T>(new APIRequest()
         {
             ApiType = ApiType.DELETE,
-            Url = $"{_villaUrl}/api/villaNumberAPI/{VillaNo}",
+            Url = $"{_villaUrl}/api/v1/villaNumberAPI/{VillaNo}",
             Token = token
         });
     }

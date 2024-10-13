@@ -2,24 +2,18 @@
 
 namespace MagicVilla_Web.Services
 {
-    public class BaseService : IBaseService
+    public class BaseService(IHttpClientFactory httpClient) : IBaseService
     {
-        public APIResponse responseModel { get; set; }
+        public APIResponse responseModel { get; set; } = new APIResponse();
 
-        private readonly IHttpClientFactory _httpClient;
-
-        public BaseService(IHttpClientFactory httpClient)
-        {
-            responseModel = new APIResponse();
-            _httpClient = httpClient;
-        }
+        private readonly IHttpClientFactory _httpClient = httpClient;
 
         public async Task<T> SendAsync<T>(APIRequest apiRequest)
         {
             try
             {
                 var client = _httpClient.CreateClient("MagicAPI");
-                HttpRequestMessage message = new HttpRequestMessage();
+                HttpRequestMessage message = new();
                 message.Headers.Add("Accept", "application/json");
                 message.RequestUri = new Uri(apiRequest.Url);
                 if (apiRequest.Data != null)
@@ -49,7 +43,8 @@ namespace MagicVilla_Web.Services
                 try
                 {
                     APIResponse APiResponse = JsonConvert.DeserializeObject<APIResponse>(apiContent);
-                    if (apiResponse.StatusCode == HttpStatusCode.BadRequest || apiResponse.StatusCode == HttpStatusCode.NotFound)
+                    if (apiResponse != null && (apiResponse.StatusCode == HttpStatusCode.BadRequest ||
+                        apiResponse.StatusCode == HttpStatusCode.NotFound))
                     {
                         APiResponse.StatusCode = HttpStatusCode.BadRequest;
                         APiResponse.IsSuccess = false;

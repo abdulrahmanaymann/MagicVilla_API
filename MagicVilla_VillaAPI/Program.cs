@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -27,8 +28,19 @@ namespace MagicVilla_VillaAPI
             builder.Services.AddScoped<IVillaNumberRepository, VillaNumberRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+            builder.Services.AddApiVersioning(options =>
+            {
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.ReportApiVersions = true;
+            }).AddApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'VVV";
+                options.SubstituteApiVersionInUrl = true;
+            });
+
             // JWT Authentication setup
-            var key = builder.Configuration.GetValue<string>("ApiSettings:Secret");
+            var key = builder.Configuration.GetValue<string>("ApiSettings:Secret")!;
             builder.Services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -79,6 +91,30 @@ namespace MagicVilla_VillaAPI
                         new List<string>()
                     }
                 });
+
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1.0",
+                    Title = "MagicVilla API",
+                    Description = "API To Manage Villas",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Abdulrahman Ayman",
+                        Url = new Uri("https://github.com/abdulrahmanaymann/MagicVilla_API")
+                    }
+                });
+
+                options.SwaggerDoc("v2", new OpenApiInfo
+                {
+                    Version = "v2.0",
+                    Title = "MagicVilla API",
+                    Description = "API To Manage Villas",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Abdulrahman Ayman",
+                        Url = new Uri("https://github.com/abdulrahmanaymann/MagicVilla_API")
+                    }
+                });
             });
 
             var app = builder.Build();
@@ -87,7 +123,11 @@ namespace MagicVilla_VillaAPI
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "MagicVilla API v1");
+                    options.SwaggerEndpoint("/swagger/v2/swagger.json", "MagicVilla API v2");
+                });
             }
 
             app.UseHttpsRedirection();
