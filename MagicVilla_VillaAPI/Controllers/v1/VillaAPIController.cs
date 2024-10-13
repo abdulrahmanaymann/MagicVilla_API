@@ -1,4 +1,5 @@
-﻿using Asp.Versioning;
+﻿using System.Text.Json;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 
 namespace MagicVilla_VillaAPI.Controllers.v1
@@ -13,13 +14,35 @@ namespace MagicVilla_VillaAPI.Controllers.v1
         private readonly IVillaRepository _repository = repository;
 
         [HttpGet]
+        [ResponseCache(CacheProfileName = "Default30")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<APIResponse>> GetAllVillas()
+        public async Task<ActionResult<APIResponse>> GetAllVillas([FromQuery] int? occupancy, [FromQuery] string? search,
+            int pageSize = 0, int pageNumber = 1)
         {
             try
             {
-                IEnumerable<Villa> villas = await _repository.GetAllAsync();
+                IEnumerable<Villa> villas;
+                if (occupancy > 0)
+                {
+                    villas = await _repository.GetAllAsync(o => o.Occupancy == occupancy, pageSize: pageSize, pageNumber: pageNumber);
+                }
 
+                else
+                {
+                    villas = await _repository.GetAllAsync(pageSize: pageSize, pageNumber: pageNumber);
+                }
+
+                if (!string.IsNullOrEmpty(search))
+                {
+                    villas = villas.Where(v => v.Amenity.Contains(search, StringComparison.CurrentCultureIgnoreCase) ||
+                                       v.Name.Contains(search, StringComparison.CurrentCultureIgnoreCase));
+                }
+
+                Pagination pagination = new() { PageNumber = pageNumber, PageSize = pageSize };
+
+                Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagination));
                 _response.Result = _mapper.Map<List<VillaDTO>>(villas);
                 _response.StatusCode = HttpStatusCode.OK;
                 return Ok(_response);

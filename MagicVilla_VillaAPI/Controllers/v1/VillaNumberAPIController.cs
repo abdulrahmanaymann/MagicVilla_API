@@ -48,6 +48,8 @@ namespace MagicVilla_VillaAPI.Controllers.v1
                 if (villaNo == 0)
                 {
                     _response.StatusCode = HttpStatusCode.BadRequest;
+                    _response.IsSuccess = false;
+                    _response.ErrorMessages = ["Invalid Villa Number"];
                     return BadRequest(_response);
                 }
 
@@ -55,11 +57,15 @@ namespace MagicVilla_VillaAPI.Controllers.v1
                 if (villNumber == null)
                 {
                     _response.StatusCode = HttpStatusCode.NotFound;
+                    _response.IsSuccess = false;
+                    _response.ErrorMessages = ["Villa Number not found"];
                     return NotFound(_response);
                 }
 
                 _response.Result = _mapper.Map<VillaNumberDTO>(villNumber);
 
+                _response.StatusCode = HttpStatusCode.OK;
+                _response.IsSuccess = true;
                 return Ok(_response);
             }
 

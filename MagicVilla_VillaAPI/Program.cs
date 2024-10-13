@@ -13,14 +13,22 @@ namespace MagicVilla_VillaAPI
 
             // Add services to the container.
 
-            builder.Services.AddControllers()
-                .AddNewtonsoftJson()
-                .AddXmlDataContractSerializerFormatters();
+            builder.Services.AddControllers(options =>
+            {
+                options.CacheProfiles.Add("Default30",
+                    new CacheProfile()
+                    {
+                        Duration = 30
+                    });
+            }).AddNewtonsoftJson()
+              .AddXmlDataContractSerializerFormatters();
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            builder.Services.AddResponseCaching();
 
             builder.Services.AddAutoMapper(typeof(MappingConfig));
 
@@ -33,7 +41,8 @@ namespace MagicVilla_VillaAPI
                 options.AssumeDefaultVersionWhenUnspecified = true;
                 options.DefaultApiVersion = new ApiVersion(1, 0);
                 options.ReportApiVersions = true;
-            }).AddApiExplorer(options =>
+            })
+                .AddApiExplorer(options =>
             {
                 options.GroupNameFormat = "'v'VVV";
                 options.SubstituteApiVersionInUrl = true;
