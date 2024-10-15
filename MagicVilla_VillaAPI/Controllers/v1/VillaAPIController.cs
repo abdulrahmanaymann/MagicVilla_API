@@ -1,6 +1,14 @@
-﻿using System.Text.Json;
+﻿using System.Net;
+using System.Text.Json;
 using Asp.Versioning;
+using AutoMapper;
+using MagicVilla.Models.Models.APIResponse;
+using MagicVilla.Models.Models.DTOs.VillaDTOs;
+using MagicVilla_VillaAPI.Models;
+using MagicVilla_VillaAPI.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MagicVilla_VillaAPI.Controllers.v1
 {
@@ -36,7 +44,7 @@ namespace MagicVilla_VillaAPI.Controllers.v1
 
                 if (!string.IsNullOrEmpty(search))
                 {
-                    villas = villas.Where(v => v.Amenity.Contains(search, StringComparison.CurrentCultureIgnoreCase) ||
+                    villas = villas.Where(v => v.Amenity!.Contains(search, StringComparison.CurrentCultureIgnoreCase) ||
                                        v.Name.Contains(search, StringComparison.CurrentCultureIgnoreCase));
                 }
 

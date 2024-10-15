@@ -1,8 +1,13 @@
-﻿using Asp.Versioning;
+﻿using System.Net;
+using Asp.Versioning;
+using MagicVilla.Models.Models.APIResponse;
+using MagicVilla.Models.Models.DTOs.AuthDTOs;
+using MagicVilla_VillaAPI.Repository.IRepository;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MagicVilla_VillaAPI.Controllers
 {
-    [Route("api/v{version:apiVersion}[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     [ApiVersionNeutral]
     public class UserAuthController : ControllerBase

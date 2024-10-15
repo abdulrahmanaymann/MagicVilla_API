@@ -1,4 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using MagicVilla.Models.Models.APIResponse;
+using MagicVilla.Models.Models.DTOs.VillaDTOs;
+using MagicVilla_Utility;
+using MagicVilla_Web.Services.IServices;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace MagicVilla_Web.Controllers
 {

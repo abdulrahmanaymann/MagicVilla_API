@@ -10,13 +10,15 @@
         </div>
         <div class="row">
             <div class="col-6 offset-3 pb-2">
-                <input asp-for="Username" type="text" class="form-control" placeholder="Username..." />
+                <input asp-for="UserName" type="text" class="form-control" placeholder="Username..." />
             </div>
             <div class="col-6 offset-3 pb-2">
                 <input asp-for="Name" type="text" class="form-control" placeholder="Name..." />
+
             </div>
             <div class="col-6 offset-3 pb-2">
                 <input asp-for="Password" type="text" class="form-control" placeholder="Password..." />
+
             </div>
             <div class="col-6 offset-3 pb-2">
                 <button type="submit" class="form-control btn-success" value="Submit">Register</button>
@@ -26,7 +28,5 @@
 </form>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    <partial name="_ValidationScriptsPartial" />
 }

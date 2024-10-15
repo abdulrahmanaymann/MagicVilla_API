@@ -1,3 +1,5 @@
+using MagicVilla.Models.Models.DTOs.AuthDTOs;
+
 namespace MagicVilla_Web.Services.IServices
 {
     public interface IAuthService

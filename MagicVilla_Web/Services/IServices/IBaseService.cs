@@ -1,4 +1,7 @@
-﻿namespace MagicVilla_Web.Services.IServices
+﻿using MagicVilla.Models.Models.APIResponse;
+using MagicVilla_Web.Models;
+
+namespace MagicVilla_Web.Services.IServices
 {
     public interface IBaseService
     {

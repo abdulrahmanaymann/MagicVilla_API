@@ -1,4 +1,9 @@
-﻿namespace MagicVilla_Web.Services
+﻿using MagicVilla.Models.Models.DTOs.VillaDTOs;
+using MagicVilla_Web.Models;
+using MagicVilla_Web.Services.IServices;
+using static MagicVilla_Utility.SD;
+
+namespace MagicVilla_Web.Services
 {
     public class VillaService(IHttpClientFactory httpClient, IConfiguration configuration) : BaseService(httpClient), IVillaService
     {

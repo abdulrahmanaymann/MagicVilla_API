@@ -1,4 +1,11 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Net;
+using System.Net.Http.Headers;
+using System.Text;
+using MagicVilla.Models.Models.APIResponse;
+using MagicVilla_Utility;
+using MagicVilla_Web.Models;
+using MagicVilla_Web.Services.IServices;
+using Newtonsoft.Json;
 
 namespace MagicVilla_Web.Services
 {

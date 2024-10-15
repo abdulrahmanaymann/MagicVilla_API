@@ -1,3 +1,6 @@
+using MagicVilla_VillaAPI;
+using MagicVilla_Web.Services;
+using MagicVilla_Web.Services.IServices;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MagicVilla_Web

@@ -1,4 +1,8 @@
 ﻿using Asp.Versioning;
+using AutoMapper;
+using MagicVilla.Models.Models.APIResponse;
+using MagicVilla_VillaAPI.Repository.IRepository;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MagicVilla_VillaAPI.Controllers.v2
 {

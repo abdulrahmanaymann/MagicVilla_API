@@ -1,4 +1,6 @@
-﻿namespace MagicVilla_Web.Services.IServices
+﻿using MagicVilla.Models.Models.DTOs.VillaNumberDTOs;
+
+namespace MagicVilla_Web.Services.IServices
 {
     public interface IVillaNumberService
     {

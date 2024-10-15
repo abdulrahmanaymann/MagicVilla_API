@@ -1,3 +1,8 @@
+using MagicVilla.Models.Models.DTOs.AuthDTOs;
+using MagicVilla_Web.Models;
+using MagicVilla_Web.Services.IServices;
+using static MagicVilla_Utility.SD;
+
 namespace MagicVilla_Web.Services
 {
     public class AuthService(IHttpClientFactory clientFactory, IConfiguration configuration) : BaseService(clientFactory), IAuthService
@@ -8,14 +13,14 @@ namespace MagicVilla_Web.Services
         {
             ApiType = ApiType.POST,
             Data = dto,
-            Url = $"{_villaUrl}/api/v1/UserAuth/login"
+            Url = $"{_villaUrl}/api/UserAuth/login"
         });
 
         public Task<T> RegisterAsync<T>(RegisterationRequestDTO dto) => SendAsync<T>(new APIRequest()
         {
             ApiType = ApiType.POST,
             Data = dto,
-            Url = $"{_villaUrl}/api/v1/UserAuth/register"
+            Url = $"{_villaUrl}/api/UserAuth/register"
         });
     }
 }
