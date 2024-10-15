@@ -6,6 +6,6 @@
 
         Task<LoginResponseDTO> Login(LoginRequestDTO dto);
 
-        Task<LocalUser> Register(RegisterationRequestDTO dto);
+        Task<UserDTO> Register(RegisterationRequestDTO dto);
     }
 }

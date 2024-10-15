@@ -42,7 +42,7 @@ namespace MagicVilla_VillaAPI.Controllers.v1
 
                 Pagination pagination = new() { PageNumber = pageNumber, PageSize = pageSize };
 
-                Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagination));
+                Response.Headers.Append("X-Pagination", JsonSerializer.Serialize(pagination));
                 _response.Result = _mapper.Map<List<VillaDTO>>(villas);
                 _response.StatusCode = HttpStatusCode.OK;
                 return Ok(_response);

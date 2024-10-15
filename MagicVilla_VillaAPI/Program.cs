@@ -1,5 +1,6 @@
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -19,7 +20,8 @@ namespace MagicVilla_VillaAPI
                     new CacheProfile()
                     {
                         Duration = 30
-                    });
+                    }
+                );
             }).AddNewtonsoftJson()
               .AddXmlDataContractSerializerFormatters();
 
@@ -27,6 +29,9 @@ namespace MagicVilla_VillaAPI
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddResponseCaching();
 

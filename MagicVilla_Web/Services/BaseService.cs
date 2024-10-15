@@ -2,11 +2,16 @@
 
 namespace MagicVilla_Web.Services
 {
-    public class BaseService(IHttpClientFactory httpClient) : IBaseService
+    public class BaseService : IBaseService
     {
         public APIResponse responseModel { get; set; } = new APIResponse();
 
-        private readonly IHttpClientFactory _httpClient = httpClient;
+        private readonly IHttpClientFactory _httpClient;
+
+        public BaseService(IHttpClientFactory httpClient)
+        {
+            _httpClient = httpClient;
+        }
 
         public async Task<T> SendAsync<T>(APIRequest apiRequest)
         {

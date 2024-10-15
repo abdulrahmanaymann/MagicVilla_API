@@ -2,12 +2,17 @@
 
 namespace MagicVilla_VillaAPI.Controllers
 {
-    [Route("api/v{version:apiVersion}/[controller]")]
+    [Route("api/v{version:apiVersion}[controller]")]
     [ApiController]
     [ApiVersionNeutral]
-    public class UserAuthController(IUserRepository userRepository) : ControllerBase
+    public class UserAuthController : ControllerBase
     {
-        private readonly IUserRepository _userRepository = userRepository;
+        private readonly IUserRepository _userRepository;
+
+        public UserAuthController(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
 
         protected APIResponse _response = new();
 
@@ -32,7 +37,7 @@ namespace MagicVilla_VillaAPI.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterationRequestDTO dto)
         {
-            bool isUnique = _userRepository.IsUniqueUser(dto.Username);
+            bool isUnique = _userRepository.IsUniqueUser(dto.UserName);
             if (!isUnique)
             {
                 _response.StatusCode = HttpStatusCode.BadRequest;
